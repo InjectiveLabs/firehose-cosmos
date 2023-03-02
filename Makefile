@@ -14,7 +14,7 @@ build:
 
 .PHONY: install
 install:
-	go install -ldflags "$(LDFLAGS)" ./cmd/firecosmos
+	go install -ldflags "$(LDFLAGS)" ./cmd/firecosmos/...
 
 .PHONY: build-all
 build-all:

@@ -5,6 +5,8 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"path/filepath"
+	"strings"
 	"time"
 
 	"github.com/spf13/cobra"
@@ -175,6 +177,11 @@ func checkLogsSource(dir string) error {
 func checkNodeBinPath(binPath string) error {
 	if binPath == "" {
 		return errors.New("node path must be set")
+	}
+
+	if strings.HasPrefix(binPath, "~/") {
+		dirname, _ := os.UserHomeDir()
+		binPath = filepath.Join(dirname, binPath[2:])
 	}
 
 	stat, err := os.Stat(binPath)
